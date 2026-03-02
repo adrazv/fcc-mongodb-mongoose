@@ -3,7 +3,20 @@ require('dotenv').config();
 
 mongoose.connect("mongodb+srv://db_user:dbtest@cluster0.vfkarsl.mongodb.net/?appName=Cluster0", { useNewUrlParser: true, useUnifiedTopology: true });
 
-let Person;
+const personSchema = new mongoose.Schema({
+      name: {
+              type: String,
+              required: true
+            },
+      age: {
+              type: Number
+           },
+      favoriteFoods: {
+                        type: [String]
+                     }
+}); 
+
+let Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
