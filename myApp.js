@@ -52,13 +52,24 @@ const createManyPeople = (arrayOfPeople, done) => {
   });
 };
 
+//const findPeopleByName = (personName, done) => {
+//  done(null /*, data*/);
+//};
+
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  // using model.find() to search 
+  // for all the people with the given name
+  Person.find({name: personName}, (err, data) => {
+    if (err) return done(err);
+    done(null, data);
+  });
 };
 
 const findOneByFood = (food, done) => {
   done(null /*, data*/);
 };
+
+
 
 const findPersonById = (personId, done) => {
   done(null /*, data*/);
