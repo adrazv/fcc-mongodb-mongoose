@@ -65,11 +65,17 @@ const findPeopleByName = (personName, done) => {
   });
 };
 
+//const findOneByFood = (food, done) => {
+//  done(null /*, data*/);
+//};
+
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  // only the first document that matches the criteria
+  Person.findOne({favoriteFoods: food}, (err, data) => {
+    if (err) return done(err);
+    done(null, data);
+  });
 };
-
-
 
 const findPersonById = (personId, done) => {
   done(null /*, data*/);
