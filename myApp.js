@@ -35,11 +35,21 @@ const createAndSavePerson = (done) => {
   person.save((err, data) => {
     if (err) return done(err);        // if there is an error, pass it to the callback
     done(null, data);                 // if successful, pass tha saved document
-  }) 
+  }); 
 };
 
+//const createManyPeople = (arrayOfPeople, done) => {
+//  done(null /*, data*/);
+//};
+
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  // use the person model to create multiple documents at once
+  // MongoDB uses documents (not rows or entries) to 
+  // represent individual records
+  Person.create(arrayOfPeople, (err, data) => {
+    if (err) return done(err);
+    done(null, data);
+  });
 };
 
 const findPeopleByName = (personName, done) => {
