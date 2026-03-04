@@ -120,7 +120,7 @@ const findEditThenSave = (personId, done) => {
   }); 
 };
 */
-
+/*
 const findEditThenSave = async (personId) => {
   const foodToAdd = "hamburguer";
   
@@ -136,6 +136,17 @@ const findEditThenSave = async (personId) => {
   } catch (err) {
     throw err;  // handle errors if they occur
   }
+};
+*/
+
+const findEditThenSave = (personId, done) => {
+  const foodToAdd = "hamburger";
+
+  Person.findById(personId);
+  data.favoriteFoods.push(foodToAdd);
+  data.save();
+
+  done(null , data);
 };
 
 const findAndUpdate = (personName, done) => {
