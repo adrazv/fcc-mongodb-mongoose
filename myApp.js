@@ -180,10 +180,24 @@ const findEditThenSave = (personId, done) => {
   });
 };
 
+//const findAndUpdate = (personName, done) => {
+//  const ageToSet = 20;
+
+//  done(null /*, data*/);
+//};
+
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
-  done(null /*, data*/);
+  Person.findOneAndUpdate(
+    { name: personName },      // filter: find the document by name
+    { age: ageToSet },         // update: set the age field to 20
+    { new: true },             // option: return the updated document instead of the old one
+    (err, updatedDoc) => {
+      if (err) return done(err);
+      done(null, updatedDoc);  // return the updated document through the callback
+    }
+  );
 };
 
 const removeById = (personId, done) => {
