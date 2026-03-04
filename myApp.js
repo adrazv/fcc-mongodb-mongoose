@@ -138,7 +138,7 @@ const findEditThenSave = async (personId) => {
   }
 };
 */
-
+/*
 const findEditThenSave = (personId, done) => {
   Person.findById(personId, (err, data) => {
     const foodToAdd = "hamburger";
@@ -148,7 +148,7 @@ const findEditThenSave = (personId, done) => {
     done(null, data);
   });
 };
-
+*/
 /*
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
@@ -160,6 +160,22 @@ const findEditThenSave = (personId, done) => {
   done(null , data);
 };
 */
+const findEditThenSave = (personId, done) => {
+  const foodToAdd = "hamburger";
+
+  Person.findById(personId, (err, person) => {
+    if (err) return done(err);
+    if (!person) return done(new Error("Person not found"));
+
+    person.favoriteFoods.push(foodToAdd);
+
+    person.save((err, updatedPerson) => {
+      if (err) return done(err);
+      done(null, updatedPerson);
+    });
+  });
+};
+
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
