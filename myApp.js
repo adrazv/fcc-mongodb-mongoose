@@ -166,7 +166,10 @@ const findEditThenSave = (personId, done) => {
 
   Person.findById(personId, (err, person) => {
     if (err) return done(err);
-    //if (!person) return done(new Error("Person not found"));
+    //if (!person) return done(new Error("Person not found")); =>this line checks if person
+    //  is null or undefined (this happens when the ID has the correct format
+    //  but does not exist in the database), which is something 
+    //  that can occur in a real-world situation
 
     person.favoriteFoods.push(foodToAdd);
 
