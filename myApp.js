@@ -160,12 +160,13 @@ const findEditThenSave = (personId, done) => {
   done(null , data);
 };
 */
+// the version below pass the tests #####################
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
 
   Person.findById(personId, (err, person) => {
     if (err) return done(err);
-    if (!person) return done(new Error("Person not found"));
+    //if (!person) return done(new Error("Person not found"));
 
     person.favoriteFoods.push(foodToAdd);
 
