@@ -94,6 +94,8 @@ const findPersonById = (personId, done) => {
 //  done(null /*, data*/);
 //};
 
+////////////////////// callback style below
+/*
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburguer";
   Person.findById(personId, (err, data) => {
@@ -106,6 +108,36 @@ const findEditThenSave = (personId, done) => {
     });
   }); 
 };
+*/
+
+const findEditThenSave = (personId, done) => {
+  const foodToAdd = "hamburguer";
+  Person.findById(personId, (err, data) => {
+      if (err) return done(err);
+      data.favoriteFoods.push(foodToAdd);
+      data.save();
+      done(null, data);  
+  }); 
+};
+
+/*
+const findEditThenSave = async (personId) => {
+  const foodToAdd = "hamburguer";
+  
+  try {
+    // find a person by id
+    const person = await Person.findById(personId);
+    // add "hamburguer" to favoriteFoods
+    person.favoriteFoods.push(foodToAdd);
+    // save doc and return the result
+    const updatedPerson = await person.save();
+    return updatedPerson;  // return doc updated
+
+  } catch (err) {
+    throw err;  // handle errors if they occur
+  }
+};
+*/
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
