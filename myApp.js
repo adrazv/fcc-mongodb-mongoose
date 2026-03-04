@@ -225,10 +225,22 @@ const removeManyPeople = (done) => {
   });
 };
 
-const queryChain = (done) => {
-  const foodToSearch = "burrito";
+//const queryChain = (done) => {
+//  const foodToSearch = "burrito";
 
-  done(null /*, data*/);
+//  done(null /*, data*/);
+//};
+
+const queryChain = (done) => {
+    const foodToSearch = "burrito";
+    Person.find({favoriteFoods: foodToSearch})
+    .sort("name")           // sort results by the 'name' field
+    .limit(2)               // limit the results to 2 documents
+    .select("-age")         // exclude the 'age' field from the returned documents
+    .exec((err, data) => {
+      if (err) return done(err);
+      done(null, data);     // return the final data through the callback
+    });
 };
 
 /** **Well Done !!**
