@@ -109,7 +109,7 @@ const findEditThenSave = (personId, done) => {
   }); 
 };
 */
-
+/*
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburguer";
   Person.findById(personId, (err, data) => {
@@ -119,8 +119,8 @@ const findEditThenSave = (personId, done) => {
       done(null, data);  
   }); 
 };
+*/
 
-/*
 const findEditThenSave = async (personId) => {
   const foodToAdd = "hamburguer";
   
@@ -137,7 +137,6 @@ const findEditThenSave = async (personId) => {
     throw err;  // handle errors if they occur
   }
 };
-*/
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
